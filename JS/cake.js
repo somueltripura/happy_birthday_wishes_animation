@@ -1,131 +1,3 @@
-/* Raw CSS string displayed in the code viewer */
-const rawCssCode = `#cake {
-  display: block;
-  position: relative;
-  margin: -10em auto 0 auto;
-}
-
-/* ============================================== Candle */
-.candle {
-  background: #ffffff;
-  border-radius: 10px;
-  position: absolute;
-  top: 228px;
-  left: 50%;
-  margin-left: -2.4px;
-  margin-top: -8.33333333px;
-  width: 5px;
-  height: 35px;
-  transform: translateY(-300px);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-animation: in 500ms 6s ease-out forwards;
-  animation: in 500ms 6s ease-out forwards;
-}
-
-.candle:after,
-.candle:before {
-  background: rgba(255, 0, 0, 0.4);
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2.22222222px;
-}
-
-.candle:after {
-  top: 25%;
-  left: 0;
-}
-
-.candle:before {
-  top: 45%;
-  left: 0;
-}
-
-/* ============================================== Fire */
-.fire {
-  border-radius: 100%;
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  margin-left: -2.6px;
-  width: 6.66666667px;
-  height: 18px;
-}
-
-.fire:nth-child(1) { animation: fuego 2s 6.5s infinite; }
-.fire:nth-child(2) { animation: fuego 1.5s 6.5s infinite; }
-.fire:nth-child(3) { animation: fuego 1s 6.5s infinite; }
-.fire:nth-child(4) { animation: fuego 0.5s 6.5s infinite; }
-.fire:nth-child(5) { animation: fuego 0.2s 6.5s infinite; }
-
-/* ============================================== Animations */
-@keyframes fuego {
-  0%, 100% {
-    background: rgba(254, 248, 97, 0.5);
-    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    background: rgba(255, 50, 0, 0.1);
-    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
-    transform: translateY(-20px) scale(0);
-  }
-}
-
-@keyframes in {
-  to {
-    transform: translateY(0);
-  }
-}`;
-
-const rawHtmlCode = `<!-- Cake with Candle Animation -->
-<div class="candle">
-  <div class="fire"></div>
-  <div class="fire"></div>
-  <div class="fire"></div>
-  <div class="fire"></div>
-  <div class="fire"></div>
-</div>
-
-<svg id="cake" version="1.1" width="200px" height="500px" viewBox="0 0 200 500">
-  <!-- Layer 3 Sponge -->
-  <path fill="#a88679" d="...">
-    <animate id="bizcocho_3" begin="relleno_2.end" dur="0.3s" fill="freeze" ... />
-  </path>
-
-  <!-- Layer 2 Filling -->
-  <path fill="#8b6a60" d="...">
-    <animate id="relleno_2" begin="bizcocho_2.end" dur="0.5s" fill="freeze" ... />
-  </path>
-
-  <!-- Layer 2 Sponge -->
-  <path fill="#a88679" d="...">
-    <animate id="bizcocho_2" begin="relleno_1.end" dur="0.5s" fill="freeze" ... />
-  </path>
-
-  <!-- Layer 1 Filling -->
-  <path fill="#8b6a60" d="...">
-    <animate id="relleno_1" begin="bizcocho_1.end" dur="0.5s" fill="freeze" ... />
-  </path>
-
-  <!-- Layer 1 Sponge (Base) -->
-  <path fill="#a88679" d="...">
-    <animate id="bizcocho_1" begin="2s" dur="0.8s" fill="freeze" ... />
-  </path>
-
-  <!-- Vanilla Crema Frosting (Dripping effect) -->
-  <path fill="#fefae9" d="...">
-    <animate id="crema" begin="bizcocho_3.end" dur="2s" fill="freeze" ... />
-  </path>
-  <rect x="10" y="475.571" fill="#fefae9" width="180" height="4" />
-</svg>
-
-<div class="text">
-  <h1>happy birthday!</h1>
-  <p>Stella</p>
-</div>`;
-
 let isCandleBlown = false;
 let likeCount = 1420;
 let isLiked = false;
@@ -142,15 +14,6 @@ const likeBtn = document.getElementById("likeBtn");
 const likeCountEl = document.getElementById("likeCount");
 const shareBtn = document.getElementById("shareBtn");
 
-// Code Modal elements
-const codeModal = document.getElementById("codeModal");
-const toggleCodeBtn = document.getElementById("toggleCodeBtn");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const codeDisplay = document.getElementById("codeDisplay");
-const copyCodeBtn = document.getElementById("copyCodeBtn");
-const tabCssBtn = document.getElementById("tabCssBtn");
-const tabHtmlBtn = document.getElementById("tabHtmlBtn");
-let activeTab = "css";
 
 // Toast helper
 function showToast(msg, icon = "✨") {
@@ -275,60 +138,6 @@ shareBtn.addEventListener("click", () => {
   showToast("Animation page link copied!", "🔗");
 });
 
-function renderCodeView() {
-  if (activeTab === "css") {
-    codeDisplay.textContent = rawCssCode;
-    copyCodeBtn.querySelector("span").textContent = "Copy CSS";
-    tabCssBtn.className =
-      "py-2.5 px-4 text-indigo-400 border-b-2 border-indigo-500 font-semibold focus:outline-none";
-    tabHtmlBtn.className =
-      "py-2.5 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent focus:outline-none";
-  } else {
-    codeDisplay.textContent = rawHtmlCode;
-    copyCodeBtn.querySelector("span").textContent = "Copy HTML";
-    tabHtmlBtn.className =
-      "py-2.5 px-4 text-indigo-400 border-b-2 border-indigo-500 font-semibold focus:outline-none";
-    tabCssBtn.className =
-      "py-2.5 px-4 text-slate-400 hover:text-slate-200 border-b-2 border-transparent focus:outline-none";
-  }
-}
-
-tabCssBtn.addEventListener("click", () => {
-  activeTab = "css";
-  renderCodeView();
-});
-
-tabHtmlBtn.addEventListener("click", () => {
-  activeTab = "html";
-  renderCodeView();
-});
-
-toggleCodeBtn.addEventListener("click", () => {
-  renderCodeView();
-  codeModal.classList.remove("hidden");
-});
-
-closeModalBtn.addEventListener("click", () => {
-  codeModal.classList.add("hidden");
-});
-
-codeModal.addEventListener("click", (e) => {
-  if (e.target === codeModal) codeModal.classList.add("hidden");
-});
-
-copyCodeBtn.addEventListener("click", () => {
-  const textToCopy = activeTab === "css" ? rawCssCode : rawHtmlCode;
-  const el = document.createElement("textarea");
-  el.value = textToCopy;
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand("copy");
-  document.body.removeChild(el);
-  showToast(`Copied ${activeTab.toUpperCase()} to clipboard!`, "📋");
-});
-
-
-
 
 // Custom cursor effect
 const cursor = document.querySelector(".cursor");
@@ -360,3 +169,27 @@ function animateTrail() {
 }
 
 animateTrail();
+
+
+// Background music toggle
+const musicBtn = document.getElementById('musicToggleBtn');
+const bgMusic = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('musicIcon');
+const musicText = document.getElementById('musicText');
+
+let isPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicIcon.textContent = '🎵';
+    musicText.textContent = 'Play Music';
+    musicBtn.classList.remove('text-pink-400', 'border-pink-500/50');
+  } else {
+    bgMusic.play();
+    musicIcon.textContent = '⏸️';
+    musicText.textContent = 'Pause Music';
+    musicBtn.classList.add('text-pink-400', 'border-pink-500/50');
+  }
+  isPlaying = !isPlaying;
+});

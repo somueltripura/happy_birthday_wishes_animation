@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Wishes Animation</title>
+  <title>Happy Birthday Celebrate Animation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
 
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen text-slate-100 bg-pattern bg-[#07021a] bg-[radial-gradient(ellipse_80%_80%_at_100%_0%,rgba(37,38,180,0.35),rgba(255,255,255,0)),radial-gradient(ellipse_70%_70%_at_0%_100%,rgba(180,10,90,0.3),rgba(255,255,255,0))]">
 
 <!-- Custom Cursor -->
   <div class="cursor"></div>
@@ -31,20 +31,23 @@
         <span class="text-sm">🎂</span>
       </div>
       <div>
-        <h1 class="text-sm font-semibold text-slate-100 font-['Outfit']">Happy Birthday Wishes Animation</h1>
+        <h1 class="text-sm font-semibold text-slate-100 font-['Outfit']">Happy Birthday Celebrate Animation</h1>
         <p class="text-xs text-slate-400">Wishing you lots of happiness, success, and beautiful moments</p>
       </div>
     </div>
 
     <div class="flex items-center space-x-2">
-      <button id="toggleCodeBtn"
-        class="px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg transition-all border border-slate-700/60 flex items-center gap-1.5">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-        <span>View Code</span>
-      </button>
+      <!-- Background Music Audio Element -->
+    <audio id="bgMusic" loop
+      src="Music/birthday music.mp3"></audio>
+
+    <!-- Music Play/Pause Button -->
+    <button id="musicToggleBtn"
+      class="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-800/80 hover:bg-slate-700/80 rounded-lg border border-slate-700 transition">
+      <span id="musicIcon">🎵</span>
+      <span id="musicText">Play Music</span>
+    </button>
+
       <button id="replayBtn"
         class="px-3 py-1.5 text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-all shadow-md shadow-indigo-600/30 flex items-center gap-1.5">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,11 +59,11 @@
     </div>
   </header>
 
-  <main class="flex-1 flex flex-col items-center bg-slate-900 justify-center p-4 md:p-8 max-w-5xl mx-auto w-full">
+  <main class="flex-1 flex flex-col items-center rounded-b-2xl shadow-2xl bg-transparent-blur justify-center p-4 md:p-8 max-w-5xl mx-auto w-full">
 
     <!-- Visual Showcase Frame (matching screenshot styling) -->
     <div
-      class="w-full max-w-lg rounded-2xl bg-[#1e2132] border border-slate-700/50 shadow-2xl relative overflow-hidden flex flex-col items-center pt-6 pb-4">
+      class="w-full max-w-lg rounded-2xl bg-[#0b0b1e]/80 backdrop-blur-md border border-indigo-500/30 border border-transparent hover:border-indigo-500 shadow-2xl relative overflow-hidden flex flex-col items-center pt-6 pb-4">
 
       <!-- Top status bar inside mockup -->
       <div class="w-full px-6 flex justify-between items-center text-xs text-slate-400 mb-2">
